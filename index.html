@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/favicon.png">
+	<title>Pride</title>
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="answers"><span>Спасибо!Мы Вам скоро перезвоним!</span></div>
+<header>
+	<div class="container">
+			<div class="header_test">
+				СКОРО! Открытие офиса во Владивостоке
+			</div>
+			<div class="header_right_side">
+				<div class="adrres">
+					<img src="img/map.png" alt="">
+					<span>г.Хабаровск, <b>ул.Вострецова, д.19</b></span>
+				</div>
+				<div class="tel">
+					<img src="img/phone.png" alt="">
+					<span>+7 (4212) <b>77-51-77</b></span>
+				</div>
+			</div>
+
+	</div>
+</header>
+<div class="wrapper">
+	<img class="logo" src="img/logo.png" alt="">
+	<span class="order_back">Заказ обратного звонка</span>
+	<form action="send.php" method="post" class="form">
+		<div class="group_input">
+			<div class="bcg_imput"></div>
+			<span>Имя</span><input class="name" name="name" type="text">
+		</div>
+		<div class="group_input">
+			<div class="bcg_imput"></div>
+			<span>Телефон</span><input data-mask-selectonfocus="true" data-mask="+7(000)000-000-00" placeholder="+7(___)___-_____"  class="tel_input" name="tel" type="text">
+		</div>
+		<div class="w-100"></div>
+		<button class="send_form">Отправить</button>
+
+	</form>
+	<div class="soti">
+		<a href="#"><img src="img/Instagram_icon.png" alt=""></a>
+		<a href="#"><img src="img/facebook.png" alt=""></a>
+	</div>
+</div>
+	
+	<script src="js/jquery-1.12.4.min.js"></script>
+	<script src="js/jquery.mask.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        $(".form").validate({
+            success: "valid",
+            rules: {
+
+                name: {
+                    minlength: 3,
+                    required: true,
+                },
+                tel: {
+                    minlength: 17,
+                    required: true,
+                }
+            },
+            messages: {
+                name: "Ваше имя",
+                tel: "Ваш телефон"
+            },
+            submitHandler : function (form) {
+
+				//$(form).submit();
+                $.ajax({
+                    url: form.action,
+                    type: form.method,
+                    data: $(form).serialize(),
+                    success: function(response) {
+                        $(".sendForm").fadeOut(400);
+                        $('#answers').fadeIn(400).delay(2000).fadeOut(1000);
+
+                    }
+                });
+            }
+        });
+	});
+</script>
+</body>
+</html>
