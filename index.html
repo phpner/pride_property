@@ -23,7 +23,7 @@
 				</div>
 				<div class="tel">
 					<img src="img/phone.png" alt="">
-					<a href="tel:+7 (4212) <b>77-51-77">+7 (4212) <b>77-51-77</b></a>
+					<a href="tel:+7 (4212) 77-51-77">+7 (4212) 77-51-77</b></a>
 				</div>
 			</div>
 
@@ -34,11 +34,11 @@
 	<form action="send.php" method="post" class="form">
 		<div class="group_input">
 			<div class="bcg_imput"></div>
-			<span class="placName">Имя</span><input class="name" name="name" type="text">
+			<!--<span class="placName">Имя</span>--><input autocomplete="off" placeholder="Имя"  class="name" name="name" type="text">
 		</div>
 		<div class="group_input">
 			<div class="bcg_imput"></div>
-			<span>Телефон</span><input data-mask-selectonfocus="true"  data-mask="+7(000)000-000-00" placeholder="+7(___)___-_____"  class="tel_input" name="tel" type="text">
+			<!--<span  class="placTell">Телефон</span>--><input autocomplete="off"  placeholder="Телефон" class="tel_input" name="tel" type="text">
 		</div>
 		<div class="w-100"></div>
 		<button class="send_form">Отправить</button>
@@ -51,7 +51,7 @@
 </div>
 	
 	<script src="js/jquery-1.12.4.min.js"></script>
-	<script src="js/jquery.mask.min.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -95,11 +95,28 @@
             }
         });
 
-        $(".name").on('input',function () {
+        //---------------
+
+        $('.tel_input').mask("+7(999) 999-99-99");
+
+
+      /* $(".tel_input").on('focus',function () {
+            $(".placTell").fadeOut();
+        }).on('blur', function(e) {
+            var len = $(this).val();
+            len === "" ? $(".placTell").fadeIn() : $(".placTell").fadeOut();
+        });*/
+
+        //-----------------
+
+   /*     $(".name").on('focus',function () {
+            /!*$(this).css({borderBottom:"1px solid"});*!/
+            $(".placName").fadeOut();
+        }).on('blur', function(e) {
             var len = $(this).val();
             len === "" ? $(".placName").fadeIn() : $(".placName").fadeOut();
-			console.log(len != "");
-        });
+          /!*  len != "" ?  $(this).css({borderBottom:"1px solid"}) :  $(".form .group_input input").css({borderBottom:""});*!/
+        });*/
 	});
 </script>
 </body>
